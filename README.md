@@ -22,29 +22,9 @@
 >
 > ### Project Structure Update
 >
-> We've unified EverCore, HyperMem, EverMemBench, and EvoAgentBench — along with usecases — into a single repository called EverOS.
+> We've unified [EverCore](methods/evermemos/), [HyperMem](methods/HyperMem/), [EverMemBench](benchmarks/EverMemBench/), and [EvoAgentBench](benchmarks/EvoAgentBench/) with usecases into a single repository.
 >
 > EverOS gives developers one place to build, evaluate, and integrate long-term memory into their self-evolving agents. 🎉
-
-
-<!-- <details open>
-<summary><kbd>Table of Contents</kbd></summary>
-
-<br>
-
-- [Project Structure](#project-structure)
-- [Key Results](#key-results)
-- [Use Cases](#use-cases)
-- [Quick Start](#quick-start)
-- [Evaluation & Benchmarking](#evaluation--benchmarking)
-- [Documentation](#documentation)
-- [GitHub Codespaces](#github-codespaces)
-- [Citation](#citation)
-- [Contributing](#contributing)
-
-<br>
-
-</details> -->
 
 <br>
 
@@ -52,28 +32,28 @@
 
 **EverOS** is a collection of long-term memory **methods**, **benchmarks**, and **usecases** for building self-evolving agents.
 
-### EverOS Structure
-
 ```
 EverOS/
+└── methods/
+    ├── EverCore/            # Long-term memory operating system
+    └── HyperMem/            # Hypergraph memory architecture
 ├── benchmarks/
 │   ├── EverMemBench/        # Memory quality evaluation
 │   └── EvoAgentBench/       # Agent self-evolution evaluation
-└── methods/
-    ├── EverCore/              # Long-term memory operating system
-    └── HyperMem/            # Hypergraph memory architecture
 └── usecases/                # Example applications
 ```
 
+<br>
 
+## Methods
 
-### Methods
+Our methods are production-ready memory architectures that give agents persistent, structured long-term memory. Each can be used standalone or composed together depending on your use case.
 
 <table>
 <tr>
 <td width="50%">
 
-![banner-gif](https://github.com/user-attachments/assets/55043376-d338-4844-b0bb-3c78839937b1)
+![banner-gif](https://github.com/user-attachments/assets/2d45227d-6817-48f5-83eb-8422d7cb989d)
 
 
 #### EverCore
@@ -97,11 +77,15 @@ A hypergraph-based hierarchical memory architecture that captures high-order ass
 </tr>
 </table>
 
-### Benchmarks
+<br>
+
+## Benchmarks
+
+Our benchmarks are designed as **open public standards**. Any memory architecture or agent framework can be evaluated under the same ruler.
 
 <table>
 <tr>
-<td width="50%">
+<td width="50%" valign="top">
 
 ![banner-gif](https://github.com/user-attachments/assets/06b4f598-73e6-44d8-b9cc-8b5483cc363e)
 
@@ -126,7 +110,7 @@ Agent self-evolution evaluation — not static snapshots, but longitudinal growt
 </tr>
 </table>
 
-> All benchmarks are designed as **open public standards**. Any memory architecture or agent framework can be evaluated under the same ruler.
+
 
 <br>
 <div align="right">
@@ -490,9 +474,30 @@ If EverOS helps your research, please cite:
 
 </div>
 
+## 🌟 Stay Tuned
+
+![star us gif][star-gif]
+
+<br>
+<div align="right">
+
+[![][back-to-top]][readme-top]
+
+</div>
+
 ## Contributing
 
-Browse [Issues][issues-link] to find your entry point or connect with maintainers — [@elliotchen200][elliot-x-link] on X and [@cyfyifanchen][cyfyifanchen-link] on GitHub.
+We love open-source energy! Whether you are squashing bugs, shipping features, sharpening docs, or just tossing in wild ideas, every PR moves EverOS forward. Browse [Issues][issues-link] to find your perfect entry point, then show us what you have got. Let us build the future of memory together.
+
+<br>
+
+> [!TIP]
+>
+> **Welcome all kinds of contributions** 🎉
+>
+> Join us in building EverOS better! Every contribution makes a difference, from code to documentation. Share your projects on social media to inspire others!
+>
+> Connect with one of the EverOS maintainers [@elliotchen200][elliot-x-link] on 𝕏 or [@cyfyifanchen][cyfyifanchen-link] on GitHub for project updates, discussions, and collaboration opportunities.
 
 ![divider][divider-light]
 ![divider][divider-dark]
@@ -501,17 +506,27 @@ Browse [Issues][issues-link] to find your entry point or connect with maintainer
 
 [![EverOS Contributors][contributors-image]][contributors]
 
-<!-- ### Contribution Guidelines
+![divider][divider-light]
+![divider][divider-dark]
 
-Read our [Contribution Guidelines][contributing-doc] for code standards and Git workflow. -->
+### Contribution Guidelines
+
+Read our [Contribution Guidelines][contributing-doc] for code standards and Git workflow.
 
 ![divider][divider-light]
 ![divider][divider-dark]
 
+### License & Citation & Acknowledgments
 
-### License
+[Apache 2.0][license] • [Citation][citation-doc] • [Acknowledgments][acknowledgments-doc]
 
-[Apache 2.0][license]
+<br>
+
+<div align="right">
+
+[![][back-to-top]][readme-top]
+
+</div>
 
 <!-- Navigation -->
 [readme-top]: #readme-top
@@ -521,7 +536,7 @@ Read our [Contribution Guidelines][contributing-doc] for code standards and Git 
 [divider-dark]: https://github.com/user-attachments/assets/d57fad08-4f49-4a1c-bdfc-f659a5d86150#gh-dark-mode-only
 
 <!-- Images -->
-[banner-gif]: https://github.com/user-attachments/assets/646e813a-a7a7-4ba2-bda8-d8bdf884a890
+[banner-gif]: https://github.com/user-attachments/assets/c2cef808-3e93-4f81-a194-dffe02ddd984
 [usecase-openclaw-image]: https://github.com/user-attachments/assets/0e06da2b-0236-430f-89b4-980b8b6a855f
 [usecase-live2d-image]: https://github.com/user-attachments/assets/a80bdab3-e5d0-43b9-9e8d-0a9605012a26
 [usecase-computer-image]: https://github.com/user-attachments/assets/0d306b4c-bcd7-4e9e-a244-22fa3cb7b727
@@ -593,4 +608,4 @@ Read our [Contribution Guidelines][contributing-doc] for code standards and Git 
 [cyfyifanchen-link]: https://github.com/cyfyifanchen
 [contributors-image]: https://contrib.rocks/image?repo=EverMind-AI/EverOS
 [contributors]: https://github.com/EverMind-AI/EverOS/graphs/contributors
-[contributing-doc]: CONTRIBUTING.md
+[contributing-doc]: methods/evermemos/CONTRIBUTING.md
