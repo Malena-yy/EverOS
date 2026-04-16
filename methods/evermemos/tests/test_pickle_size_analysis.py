@@ -14,6 +14,7 @@ import asyncio
 import pickle
 import sys
 import time
+import pytest
 from datetime import timedelta
 from core.di.utils import get_bean
 from core.observation.logger import get_logger
@@ -89,6 +90,7 @@ class LargeDataContainer:
         }
 
 
+@pytest.mark.asyncio
 async def test_basic_types_size():
     """Test serialization size of basic data types"""
     logger.info("Starting test for basic data type serialization size...")
@@ -155,6 +157,7 @@ async def test_basic_types_size():
     logger.info("✅ Basic data type size analysis completed")
 
 
+@pytest.mark.asyncio
 async def test_complex_objects_size():
     """Test serialization size of complex objects"""
     logger.info("Starting test for complex object serialization size...")
@@ -195,6 +198,7 @@ async def test_complex_objects_size():
     logger.info("✅ Complex object size analysis completed")
 
 
+@pytest.mark.asyncio
 async def test_large_data_structures():
     """Test serialization size of large data structures"""
     logger.info("Starting test for large data structure serialization size...")
@@ -249,6 +253,7 @@ async def test_large_data_structures():
     logger.info("✅ Large data structure size analysis completed")
 
 
+@pytest.mark.asyncio
 async def test_function_and_class_objects():
     """Test serialization size of function and class objects"""
     logger.info("Starting test for function and class object serialization size...")
@@ -354,6 +359,7 @@ async def test_function_and_class_objects():
     logger.info("✅ Function and class object size analysis completed")
 
 
+@pytest.mark.asyncio
 async def test_nested_structures():
     """Test serialization size of nested structures"""
     logger.info("Starting test for nested structure serialization size...")
@@ -428,6 +434,7 @@ async def test_nested_structures():
     logger.info("✅ Nested structure size analysis completed")
 
 
+@pytest.mark.asyncio
 async def test_redis_storage_efficiency():
     """Test Redis storage efficiency"""
     logger.info("Starting test for Redis storage efficiency...")

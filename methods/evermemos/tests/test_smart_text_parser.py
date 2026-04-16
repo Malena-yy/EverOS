@@ -63,10 +63,10 @@ class TestTokenConfig:
         """Test default configuration"""
         config = TokenConfig()
         assert config.cjk_char_score == 1.0
-        assert config.english_word_score == 1.0
+        assert config.english_word_score == 1.5
         assert config.continuous_number_score == 0.8
-        assert config.punctuation_score == 0.2
-        assert config.whitespace_score == 0.1
+        assert config.punctuation_score == 0.5
+        assert config.whitespace_score == 0.3
         assert config.other_score == 0.5
 
     def test_custom_config(self):
@@ -97,7 +97,7 @@ class TestSmartTextParser:
         """Test default initialization"""
         parser = SmartTextParser()
         assert parser.config.cjk_char_score == 1.0
-        assert parser.config.english_word_score == 1.0
+        assert parser.config.english_word_score == 1.5
 
     def test_init_custom_config(self):
         """Test custom configuration initialization"""
@@ -194,7 +194,7 @@ class TestParseTokens:
         assert tokens[0].content == "hello"
         assert tokens[0].start_pos == 0
         assert tokens[0].end_pos == 5
-        assert tokens[0].score == 1.0
+        assert tokens[0].score == 1.5
 
     def test_english_word_with_apostrophe(self):
         """Test English word with apostrophe"""
@@ -222,7 +222,7 @@ class TestParseTokens:
         assert len(tokens) == 1
         assert tokens[0].type == TokenType.PUNCTUATION
         assert tokens[0].content == "!"
-        assert tokens[0].score == 0.2
+        assert tokens[0].score == 0.5
 
     def test_whitespace(self):
         """Test whitespace characters"""
@@ -230,7 +230,7 @@ class TestParseTokens:
         assert len(tokens) == 1
         assert tokens[0].type == TokenType.WHITESPACE
         assert tokens[0].content == "   "
-        assert tokens[0].score == 0.1
+        assert tokens[0].score == 0.3
 
     def test_mixed_text(self):
         """Test mixed text"""
@@ -428,15 +428,15 @@ class TestGetTextAnalysis:
         analysis = self.parser.get_text_analysis(text)
 
         assert analysis["total_tokens"] == 4  # Hello, space, 你, 好
-        assert analysis["total_score"] == 3.1  # 1.0 + 0.1 + 1.0 + 1.0
+        assert analysis["total_score"] == 3.8  # 1.5 + 0.3 + 1.0 + 1.0
 
         assert analysis["type_counts"]["english_word"] == 1
         assert analysis["type_counts"]["cjk_char"] == 2
         assert analysis["type_counts"]["whitespace"] == 1
 
-        assert analysis["type_scores"]["english_word"] == 1.0
+        assert analysis["type_scores"]["english_word"] == 1.5
         assert analysis["type_scores"]["cjk_char"] == 2.0
-        assert analysis["type_scores"]["whitespace"] == 0.1
+        assert analysis["type_scores"]["whitespace"] == 0.3
 
     def test_complex_text_analysis(self):
         """Test complex text analysis"""

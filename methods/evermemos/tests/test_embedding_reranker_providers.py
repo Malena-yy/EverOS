@@ -1,7 +1,8 @@
 import asyncio
 import os
+import pytest
 import numpy as np
-from agentic_layer.vectorize_service import get_text_embedding
+from agentic_layer.vectorize_service import get_vectorize_service
 from agentic_layer.rerank_service import get_rerank_service
 
 # ===== Environment configuration =====
@@ -26,6 +27,7 @@ os.environ["RERANK_API_KEY"] = "EMPTY"
 # os.environ["RERANK_MODEL"] = "Qwen/Qwen3-Reranker-4B"
 
 
+@pytest.mark.asyncio
 async def test_embedding():
     """Test Embedding and calculate similarity"""
     print("\n=== Test Embedding ===")
@@ -44,22 +46,24 @@ async def test_embedding():
     print(f"Query Task: {query_task}")
     print(f"Query: {query}")
     print(f"Documents: [{doc1}, {doc2}, {doc3}]")
-    
+
+    service = get_vectorize_service()
+
     # Query: Use is_query=True
     print("\n--- Query Embedding (is_query=True) ---")
-    query_emb = await get_text_embedding(query, instruction=query_task, is_query=True)
+    query_emb = await service.get_embedding(query, instruction=query_task, is_query=True)
     print(f"Query vector dimension: {len(query_emb)}")
     print(f"Configured dimension: 1024")
     if len(query_emb) == 1024:
         print("✅ Query dimension correct")
     else:
         print(f"❌ Query dimension mismatch! Expected 1024, got {len(query_emb)}")
-    
+
     # Documents: Use is_query=False (without instruction)
     print("\n--- Document Embeddings (is_query=False) ---")
-    doc1_emb = await get_text_embedding(doc1, is_query=False)
-    doc2_emb = await get_text_embedding(doc2, is_query=False)
-    doc3_emb = await get_text_embedding(doc3, is_query=False)
+    doc1_emb = await service.get_embedding(doc1, is_query=False)
+    doc2_emb = await service.get_embedding(doc2, is_query=False)
+    doc3_emb = await service.get_embedding(doc3, is_query=False)
     print(f"Document vector dimension: {len(doc1_emb)}")
     if len(doc1_emb) == 1024:
         print("✅ Document dimension correct")
@@ -93,6 +97,7 @@ async def test_embedding():
         print("⚠️  Similarity ranking does not fully match expectation")
 
 
+@pytest.mark.asyncio
 async def test_rerank():
     """Test Rerank"""
     print("\n=== Test Rerank ===")

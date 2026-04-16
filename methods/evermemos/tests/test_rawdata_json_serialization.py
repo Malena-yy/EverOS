@@ -280,7 +280,7 @@ class TestRawDataJsonSerialization:
     def test_error_handling(self):
         """Test error handling"""
         # Test invalid JSON
-        with pytest.raises(ValueError, match="Invalid JSON format"):
+        with pytest.raises(ValueError, match="JSON format error"):
             RawData.from_json_str("invalid json")
 
         # Test non-object JSON
@@ -504,8 +504,8 @@ class TestRawDataJsonSerialization:
         assert isinstance(restored_data.metadata["updateTime"], datetime)
 
         # Verify time format strings in message content remain unchanged
-        assert isinstance(restored_data.content["content"], str)
-        assert "2024-01-01T10:00:00Z" in restored_data.content["content"]
+        assert isinstance(restored_data.content["content"], list)
+        assert "2024-01-01T10:00:00Z" in restored_data.content["content"][0]["content"]
 
         # Verify other field types are correct
         assert isinstance(restored_data.content["sender_name"], str)
@@ -637,8 +637,8 @@ class TestRawDataJsonSerialization:
             restored_data.content["system_info"]["config"]["start_time"], datetime
         )
 
-        # Verify non-time fields remain as strings
-        assert isinstance(restored_data.content["message_info"]["content"], str)
+        # Verify non-time fields remain as their original types
+        assert isinstance(restored_data.content["message_info"]["content"], list)
         assert isinstance(
             restored_data.content["message_info"]["author"]["profile_description"], str
         )
@@ -652,7 +652,7 @@ class TestRawDataJsonSerialization:
 
         # Verify string content remains unchanged
         assert (
-            "2024-01-01T10:00:00Z" in restored_data.content["message_info"]["content"]
+            "2024-01-01T10:00:00Z" in restored_data.content["message_info"]["content"][0]["content"]
         )
         assert (
             "2024-01-01T08:00:00+00:00"
