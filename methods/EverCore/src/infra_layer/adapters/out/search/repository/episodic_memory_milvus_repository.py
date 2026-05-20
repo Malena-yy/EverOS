@@ -32,6 +32,9 @@ class EpisodicMemoryMilvusRepository(BaseMilvusRepository[EpisodicMemoryCollecti
     def __init__(self):
         """Initialize episodic memory repository"""
         super().__init__(EpisodicMemoryCollection)
+        self.search_output_fields = [
+            field for field in self.all_output_fields if field != "vector"
+        ]
 
     # ==================== Document Creation and Management ====================
 
@@ -201,7 +204,7 @@ class EpisodicMemoryMilvusRepository(BaseMilvusRepository[EpisodicMemoryCollecti
                 param=search_params,
                 limit=limit,
                 expr=filter_str,
-                output_fields=self.all_output_fields,
+                output_fields=self.search_output_fields,
             )
 
             # Process results
